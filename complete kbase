@@ -1,0 +1,305 @@
+
+###The Change App: Complete Technical Knowledge Base (Final Draft)
+
+Document Purpose: This document is the single source of truth for the architectural and mechanical design of The Change App. It contains all system rules, tokenomics, governance procedures, and technical specifications necessary for implementation. It supersedes all previous notes and discussions.
+
+###1. Core Philosophy & Architecture
+
+    ###Name: The Change App - A Living Democracy Platform
+
+    Foundation: Direct democracy with competence verification and granular liquid delegations.
+
+    Core Technology: Autobase. The system is event-driven, using Autobase for its decentralized, multi-writer data structures and consensus model.
+
+    UI/UX Philosophy: The user interface and experience (UI/UX) will draw heavy inspiration from Reddit, prioritizing clear hierarchical discussion threads and intuitive voting mechanisms.
+
+    Operating Model: The platform operates on an eventual consistency model, where conflict is a feature that drives the evolution and refinement of proposals.
+
+    Scale: The system is designed to scale logarithmically across geographic jurisdictions, from Neighborhood up to Global and beyond.
+
+###2. The Dual-Token Economy
+
+The platform's economy is powered by two distinct, merit-based tokens.
+
+ACents (Competence-Based Tokens)
+
+    Purpose: To measure and reward demonstrated competence. ACents are fully transferable between users.
+
+    Earning Mechanisms:
+
+        Tutorial Quiz Pass: 1 ACent.
+
+        Founding Proposal Vote: 1 ACent.
+
+        Successful Referral: 1 ACent.
+
+        Random "Ambush" Quizzes: Passing periodic, random quizzes on various topics earns ACents.
+
+        Proposal Upvotes: 1 ACent per upvote is added to the proposal's escrow account.
+
+        Casting a Delegated Vote: 0.5 ACent (split with the delegator).
+
+        Comment Integration: ACents are paid from the proposal's "Commenter Pool".
+
+    Spending Mechanisms:
+
+        Proposal Submission: Costs 3 ACents.
+
+        Implementer Bond: A variable amount of ACents posted by an implementer.
+
+DCents (Participation-Based Tokens)
+
+    Purpose: To enable participation (commenting, delegation) for users who have not passed a competence quiz on a given topic.
+
+    Earning Mechanisms:
+
+        Quiz Failure: 1 DCent.
+
+        Voting on Comments: 1 DCent per vote (up or down).
+
+    Spending Mechanisms:
+
+        Commenting (for non-quiz-passers): Costs 3 DCents.
+
+Onboarding Economic Design
+
+The initial token distribution is precisely calibrated. A user who passes the tutorial quiz (1 ACent), votes on the founding proposal (1 ACent), and successfully refers one new user (1 ACent) will have exactly 3 ACents—the cost of submitting their first proposal. This design intentionally creates a high bar for initial proposals to ensure quality.
+
+###3. User Lifecycle & Onboarding
+
+    Registration: A new user creates an account.
+
+    Tutorial & Quiz: The user completes a mandatory tutorial, followed by a competence quiz.
+
+    First Token: Upon passing, the user receives 1 ACent. If they fail, they receive 1 DCent.
+
+    Founding Proposal: The user gains access to the founding proposal.
+
+    First Vote & Second Token: By voting on the founding proposal, the user earns their second ACent.
+
+###4. Competence Verification System (Quizzes)
+
+    Quiz Creation: Proposal authors suggest questions. An uncensored AI model then cross-references and suggests edits.
+
+        AI Model Note: The current candidate is a Llama-based model, chosen for its ability to perform this task neutrally.
+
+    Passing Threshold: A score of 75% is required to pass.
+
+    Failure Path: On failure, the user receives 1 DCent and can delegate their vote.
+
+    Second Chance (Genius Protection): After a failure, a user can submit a free-response essay. An AI analyzes this to distinguish unconventional wisdom from incompetence. A human review can be initiated if the user disputes the AI's assessment.
+
+    Random "Ambush" Quizzes: The system will randomly present users with quizzes on various topics. This allows users to build a reserve of ACents and helps the platform map users' general knowledge domains.
+
+###5. The Proposal Lifecycle
+
+    Creation: A user with at least 3 ACents submits a proposal.
+
+    Voting & Funding: The proposal is voted on by competent users. Each upvote adds 1 ACent to the proposal's escrow.
+
+    Scaling: The proposal scales to higher geographic levels by meeting thresholds for both competence (MVC) and participation (MPS).
+
+    Evolution: The proposal text is amended and improved as comments from the "Alchemical Zone" are integrated.
+
+    Implementation: Once sufficiently funded, the proposal moves to the Implementer Marketplace.
+
+###6. The Implementer Marketplace & Escrow System
+
+    Bidding: "Implementers" bid on funded proposals by posting an ACent-based bond.
+
+    Bond Requirement: The bond must be at least 20% of the proposal's total escrow value.
+
+    Implementer Competence: Implementers are not required to be subject-matter experts. Their role is to execute the competent instructions encoded in the proposal text.
+
+    Selection: The proposal author and all integrated commenters deliberate and approve an Implementer's bid.
+
+    Escrow Payout & Verification:
+
+        Payout Split:
+
+            Implementer: 40% (Receives half upfront, half upon completion).
+
+            Author: 30%.
+
+            Integrated Commenters: 30% (split proportionally).
+
+        Watchdog Incentive: The Author and Commenters do not receive their payouts until they unanimously verify the project's completion, incentivizing oversight.
+
+###7. The Alchemical Zone (Comment & Integration System)
+
+    Commenting Access: Users who pass a proposal's quiz can comment for free. Others must spend 3 DCents.
+
+    Comment Voting: Any user can vote on comments, earning 1 DCent per vote.
+
+    Manual Integration: The proposal author can integrate any comment at any time.
+
+    Auto-Integration:
+
+        Threshold: When a comment's upvote count equals the proposal's upvote count, it is automatically integrated.
+
+        Restriction: Auto-integration only applies at the City level and higher.
+
+        Overrule Protection: An author cannot prevent integration once a comment's support exceeds the proposal's support.
+
+    Economic Conversion: When a comment is integrated, the commenter is paid in ACents from the 30% "Commenter Pool" of the proposal's escrow.
+
+###8. Delegation System
+
+    Mechanics: A user can delegate their vote on any proposal for which they are not quiz-certified. Delegations are fluid and can be revoked at any time.
+
+    Designation: A user can delegate to their referrer (default), or any other user. Non-users can be invited.
+
+    Economic Incentives: When a delegated vote is cast, the reward is split: 0.5 ACent to the delegator and 0.5 ACent to the vote caster. Only the first cast of a vote is rewarded.
+
+###9. Geographic Scaling System
+
+A proposal must meet thresholds for both Minimum Verified Competence (MVC) and Minimum Popular Support (MPS) to scale.
+Jurisdiction	Approx. Population	MVC (ACents)	MPS (Voters)
+Neighborhood	100 - 2,000	15	50
+City / Town	2,000 - 100,000	150	750
+State / Province	100K - 10M	1,500	15,000
+Country	10M - 100M	15,000	150,000
+Continent	100M - 500M	75,000	1,000,000
+World	500M+	150,000	5,000,000
+
+###10. Technical Implementation Details (Autobase)
+
+    Core Events:
+
+        USER_REGISTER, QUIZ_ATTEMPT, QUIZ_PASS, QUIZ_FAIL
+
+        PROPOSAL_CREATE, PROPOSAL_VOTE, PROPOSAL_UPVOTE
+
+        COMMENT_CREATE, COMMENT_VOTE, COMMENT_INTEGRATE
+
+        DELEGATION_SET, DELEGATION_REVOKE, DELEGATION_VOTE
+
+        IMPLEMENTER_BOND, IMPLEMENTATION_VERIFY, PAYOUT_DISTRIBUTE
+
+    State Objects:
+
+        User Profiles: ACent/DCent balances, delegations, quiz history.
+
+        Proposals: Content, version history, escrow balance, vote counts, geographic level.
+
+        Comments: Content, upvotes, integration status.
+
+        Escrow Accounts: Proposal funds, implementer bonds, payout calculations.
+
+###Appendix A: Founder's Proposal ("Take Our Planet Back Block by Block")
+
+We would much prefer that these truths had been self-evident, but experience dictates this to be one of those instances wherein the truths held dearest to our hearts have to be spelled out in explicit detail for the institutions that we've founded to serve us. Therefore we, the users of The Change App, hereby establish not merely an application, but a new social contract for the digital world. We found a Living Democracy comprised of Living Proposals, and we inscribe into its immutable heart a Bill of Digital Rights, that our evolution may be guided by principle and protected from the failures of the past.
+
+We declare that the authority of any technology must be derived from the informed consent of the people it serves. To this end, we establish the ACent not just as a measure of competence, but as a unit of trust earned in the defense of these rights.
+
+Our Digital Bill of Rights shall be the foundation upon which all proposals are built:
+
+    Article 1- The Right to Privacy: Our digital lives, communications, and movements are inviolable. Surveillance shall not be the default state of existence.
+
+    Article 2 - The Right to Human Review: No person shall be subject to a final decision made solely by an algorithm. Every user retains the irrevocable right to appeal to a jury of their competent peers.
+
+    Article 3- Protection Against Predictive Policing: We ban the use of data to forecast criminal behavior, for such practices punish possibility instead of action and perpetuate ancient biases under a mask of technological neutrality.
+
+    Article 4 - The Right to Encryption: The right to private conversation is a cornerstone of free society. This right extends irrevocably to the digital realm.
+
+    Article 5- The Right to Control One's Data: We are not products. Our data is our property. Its terms of use are ours to set and revoke.
+
+    Article 6 - The Right to Mandatory AI Bias Audits: Any system that adjudicates, evaluates, or gates-keeps must submit to regular, public, and competent audits for bias and fairness. Transparency is non-negotiable.
+
+    Article 7 - Ban on Covert Biometrics: The use of facial recognition and other biometric surveillance in public places without explicit, prior community consent is hereby forbidden. We will not live in a panopticon.
+
+    Article 8- The Right to be Forgotten: The right to move on, to evolve, and to leave past mistakes behind is essential to human dignity. This right extends to our digital footprints.
+
+    Article 9- Community Consent for Data Extraction: The data of our community is a common resource. Its extraction by any entity, corporate or state, requires the informed consent of the community itself, expressed through democratic deliberation.
+
+    Article 10- The Right to Digital Sanctuary: Every individual has the right to exist online without being relentlessly targeted, manipulated, or harassed by automated systems. Our minds are our own.
+
+Let this Covenant be the bedrock of our new digital society. Let it be the litmus test for every proposal, the shield for every user, and the promise we make to the future.
+
+May each adopter of this new way agree to defend these foundations set forth on this day. May these words remain embedded immutably at the very core of this network.
+
+Let no part of this Covenant be stricken from the source except through the observance of its own internal processes—the competent, democratic will of the people it protects.
+
+Let us all recognize here and now that by and through each one of our acceptance of this new social contract, we lay to rest the revolution in favor of our evolution.
+
+What say you, Human? Will you lay aside your arms and take up The Change App to defend these rights, enrich yourself, and add value to the lives of every reflection that looks back at you? From block to block, we'll ACend higher and higher.
+
+    TAObaeus Rushaeus, Founder
+    scope: 'world',
+    isProtected: true,
+
+###Appendix B: The Change App Living Democracy License (CADL)
+
+The Change App Living Democracy License (CADL) 
+Version 1.0, August 2025 
+A Living License Governed by Democratic Process
+
+ PREAMBLE: THE DEMOCRATIC PRINCIPLE 
+ This is not a traditional software license. This is a Living License that embodies the same democratic principles as the software it governs. Just as The Change App evolves through the collective wisdom of its users, so too shall this license evolve through the democratic processes embedded within the platform itself. The Revolutionary Principle: Rather than static legal text carved in stone by lawyers, this license places its own governance in the hands of the very democracy it protects. The Change App community - through its established competence verification and proposal systems - becomes the ultimate authority over how this software may be used, modified, and distributed. Transparency Through Source Availability: The code is fully visible and auditable, ensuring complete transparency. However, the rights to modify, distribute, and govern this software are not granted through traditional legal mechanisms, but earned through participation in the democratic processes that define The Change App itself. 
+ 
+ARTICLE I: FOUNDATIONAL PRINCIPLES 
+ 1.1 The Democratic Governance Model 
+This license operates under the principle that legitimate authority derives from competent democratic participation. All decisions regarding the modification, distribution, and governance of The Change App shall be made through the platform's own proposal and voting systems, where participants must demonstrate competence through quiz-based verification. 
+ 1.2 The Living Contract 
+This license, like The Change App itself, is a Living Document. Its terms may be modified only through proposals submitted and voted upon within The Change App platform, following all established competence verification and voting procedures. 
+ 1.3 Source Transparency 
+The complete source code is made available for inspection, audit, and understanding. This transparency serves democracy by ensuring no hidden mechanisms or backdoors exist that could subvert the democratic process. 
+
+ARTICLE II: INITIAL GOVERNANCE STRUCTURE 
+ 2.1 The Founding Authority 
+TAObaeus Rushaeus is established as the Founding Authority of The Change App, with the founding proposal "Take Our Planet Back Block by Block" serving as the constitutional foundation of this democratic system.      
+ 2.2 Founding Protection Period 
+For the initial governance period, the following elements are protected from modification: The founding proposal and its embedded governance principles The core democratic mechanisms (competence verification, proposal systems, voting procedures) The dual-token economy (ACents and DCents) The attribution of TAObaeus Rushaeus as founder 
+ 2.3 Democratic Evolution Pathway 
+These protections may be modified or removed ONLY through the democratic processes established within The Change App itself, requiring: Submission of properly formatted proposals Competence verification of voting participants Achievement of democratic consensus as defined by the platform's governance mechanisms 
+
+ARTICLE III: USAGE RIGHTS AND RESTRICTIONS 
+ 3.1 Inspection and Study Rights 
+Any person or entity may: Access and inspect the complete source code Study the implementation and democratic mechanisms Audit for security, transparency, or educational purposes Create educational materials about the system 
+ 3.2 Participation Rights 
+To gain modification and distribution rights, entities must: Become legitimate participants in The Change App democracy Pass competence verification quizzes Engage with the proposal and voting systems Earn authority through demonstrated competence within the platform 
+ 3.3 Fork and Modification Restrictions 
+No Traditional Forking: Unlike conventional open source software, this code may not be forked, modified, or redistributed outside of The Change App's democratic governance structure. Any legitimate modifications must emerge from within the democratic process itself.
+
+ Democratic Modification Only: Changes to the software must be proposed, debated, and voted upon by the verified competent participants of The Change App community, following all established democratic procedures. 
+ 
+ 3.4 Deployment Restrictions 
+Any deployment of The Change App must: Include the complete, unmodified founding proposal Maintain the democratic governance mechanisms Preserve the competence verification systems Attribute TAObaeus Rushaeus as founder Connect to or establish legitimate Change App democratic processes 
+
+ARTICLE IV: THE DEMOCRATIC OVERRIDE PRINCIPLE 
+ 4.1 Community Sovereignty 
+The Change App community, through its democratic processes, holds ultimate sovereignty over this software and license. This includes the theoretical power to: Modify or replace leadership structures Alter the governance mechanisms themselves Change distribution and usage terms Remove or modify founder attributions 
+ 4.2 Competence-Based Authority 
+Such changes require legitimate democratic consensus achieved through: Proper proposal submission procedures Competence verification of all voting participants Achievement of required voting thresholds Following all established democratic safeguards 
+ 4.3 Protection Against Hostile Takeovers 
+This democratic override principle protects against hostile takeovers by requiring would-be controllers to: Participate legitimately in the democratic process Demonstrate competence in relevant areas Build genuine community consensus Follow established procedural safeguards 
+
+ARTICLE V: ENFORCEMENT AND EVOLUTION 
+ 5.1 Enforcement Mechanism 
+This license is enforced primarily through the democratic mechanisms of The Change App itself. The community serves as the primary guardian of these terms. 
+ 5.2 Legal Backing 
+While democratic process is primary, traditional legal mechanisms support this license where democratic processes are circumvented or ignored. 
+ 5.3 License Evolution 
+This license may be modified through proposals and votes within The Change App, following the same democratic processes that govern the software itself. 
+
+ARTICLE VI: TRADITIONAL LEGAL SAFEGUARDS 
+ 6.1 Copyright Protection 
+TAObaeus Rushaeus retains copyright ownership of the founding proposal and original code, subject to modification through legitimate democratic processes only. 
+ 6.2 Disclaimer of Warranty 
+This software is provided "AS IS" without warranty of any kind. 
+ 6.3 Limitation of Liability 
+The copyright holder shall not be liable for damages arising from use of this software. 
+
+END OF LICENSE TERMS 
+
+NOTICE TO DEVELOPERS AND USERS
+This is not traditional open source software. 
+This is Democracy-Governed Source-Available Software.
+You may inspect, study, and audit this code freely.
+However, the rights to modify, fork, or redistribute this software are governed by the democratic processes embedded within The Change App itself, not by traditional legal grants. 
+To gain modification rights, you must become a legitimate participant in The Change App democracy and work through its established governance mechanisms. 
+The community rules. 
+The code serves the democracy. 
+The democracy evolves the code.
+ Copyright (c) 2025 TAObaeus Rushaeus 
+ Licensed under The Change App Living Democracy License

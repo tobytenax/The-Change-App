@@ -1,0 +1,39 @@
+{
+  "name": "change-app-v2",
+  "version": "2.0.0",
+  "description": "The Change App - A Revolutionary Living Democracy Platform",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "democracy",
+    "governance",
+    "autobase",
+    "p2p",
+    "decentralized",
+    "voting",
+    "competence",
+    "delegation"
+  ],
+  "author": "TAObaeus Rushaeus",
+  "license": "CADL-1.0",
+  "dependencies": {
+    "autobase": "^7.18.1",
+    "corestore": "^6.18.3",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.18.2",
+    "hyperbee": "^2.21.0",
+    "hyperswarm": "^4.8.0",
+    "random-access-memory": "^6.2.1",
+    "uuid": "^9.0.1",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

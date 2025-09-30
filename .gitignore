@@ -1,16 +1,1 @@
-# Dependencies
-/node_modules
-/venv
-
-# Build artifacts
-/build
-/dist
-
-# Environment variables
-.env
-.env.*
-
-# IDE and OS files
-.vscode/
-.idea/
-*.DS_Store
+node_modules
