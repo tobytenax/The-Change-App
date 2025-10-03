@@ -140,16 +140,11 @@ export default function Tutorial({ user, onUserUpdate }) {
     
     try {
       const response = await axios.post('/api/quiz/generate', {
-        proposalId: 'tutorial',
-        authorSuggestions: [
-          'What are the two types of tokens in The Change App?',
-          'What percentage score is required to pass a competence quiz?',
-          'What happens when a comment gets as many upvotes as the proposal?',
-          'How many ACents does it cost to submit a proposal?'
-        ]
+        proposalId: 'tutorial'
       })
 
       if (response.data.success) {
+        // The backend now sends options with letters, so we use them directly.
         setQuizQuestions(response.data.questions)
         setShowQuiz(true)
       } else {
@@ -157,29 +152,8 @@ export default function Tutorial({ user, onUserUpdate }) {
       }
     } catch (error) {
       console.error('Quiz generation error:', error)
-      
-      // Fallback to hardcoded questions if API fails
-      const fallbackQuestions = [
-        {
-          question: "What are the two types of tokens in The Change App?",
-          options: ["ACents and BCents", "ACents and DCents", "Tokens and Coins", "Credits and Points"]
-        },
-        {
-          question: "What percentage score is required to pass a competence quiz?",
-          options: ["50%", "60%", "75%", "90%"]
-        },
-        {
-          question: "How many ACents does it cost to submit a proposal?",
-          options: ["1 ACent", "2 ACents", "3 ACents", "5 ACents"]
-        },
-        {
-          question: "What happens when quiz takers 'fail' a competence test?",
-          options: ["They are banned", "They earn a DCent", "They lose tokens", "Nothing happens"]
-        }
-      ]
-      
-      setQuizQuestions(fallbackQuestions)
-      setShowQuiz(true)
+      setError('Failed to load the quiz. Please try again.')
+      setShowQuiz(false)
     }
     
     setLoading(false)
@@ -199,7 +173,6 @@ export default function Tutorial({ user, onUserUpdate }) {
       if (response.data.success) {
         setQuizResult(response.data)
         if (response.data.passed) {
-          // Update user with new ACent
           onUserUpdate({
             ...user,
             acents: (user.acents || 0) + 1,
@@ -272,7 +245,7 @@ export default function Tutorial({ user, onUserUpdate }) {
                         onChange={(e) => handleAnswerChange(index, parseInt(e.target.value))}
                         className="text-blue-600"
                       />
-                      <span>{String.fromCharCode(65 + optionIndex)}) {option}</span>
+                      <span>{option}</span>
                     </label>
                   ))}
                 </div>
@@ -313,7 +286,7 @@ export default function Tutorial({ user, onUserUpdate }) {
           <CardContent className="space-y-4">
             <div className="text-center">
               <div className="text-3xl font-bold mb-2">
-                {Math.round(quizResult.score)}%
+                {Math.round(quizResult.score * 100)}%
               </div>
               <div className="text-lg">
                 {quizResult.passed ? (
